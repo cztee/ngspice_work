@@ -1,0 +1,13 @@
+Astable multivibrator simulation
+.include nabla.lib
+Vcc in 0 dc 5 ac 0
+R1 in q_bar 100
+C1 q_bar q_bar_ctrl 33n
+R2 in q_bar_ctrl 10k
+Q1 q_bar q_ctrl 0 2N3904
+R3 in q_ctrl 10k
+C2 q_ctrl q 33n
+R4 in q 100
+Q2 q q_bar_ctrl 0 2N3904
+.end
+
