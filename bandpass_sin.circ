@@ -1,0 +1,11 @@
+Bandpass simulation with sinusoidal input
+V1 vin 0 SIN(0 1 1k 0 0)
+R1 vin cin 1k
+C1 cin 0 10u
+.end
+.control
+options savecurrents
+tran 10n 3m
+plot (vin - cin)/1k cin
+.endc
+

@@ -1,0 +1,27 @@
+Boost converter circuit
+
+.include lib/nxp.lib
+.include lib/on_fet.lib
+
+*voltage source and pulse generator
+VCC in 0 5
+VG vg 0 dc 0 ac 0 pulse(0 5 50u 100n 100n 100u 150u)
+
+*boost topology circuit
+L1 in sw_node 250u
+
+*diode
+Xd sw_node out PMEG4050EP
+* switch MOSFET
+* drain gate source type
+Xsw sw_node vg 0 ntd3055-150
+CFilter out 0 480u
+RLoad out 0 100
+
+.control
+.optio savecurrents
+set filetyp=ascii
+tran 10n 20m
+plot out sw_node @L1[i]
+write boost-circ.ngdat sw_node @L1[i]
+.endc

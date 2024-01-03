@@ -1,0 +1,31 @@
+Astable multivibrator simulation
+.include nabla.lib
+
+* The bistable oscillator part
+Vcc in 0 dc 5 ac 0
+R1 in q_bar 100
+C1 q_bar q_bar_ctrl 33n
+R2 in q_bar_ctrl 10k
+Q1 q_bar q_ctrl 0 2N3904
+R3 in q_ctrl 10k
+C2 q_ctrl q 33n
+R4 in q 100
+Q2 q q_bar_ctrl 0 2N3904
+
+* We need a voltage divider here
+R1_div in div_out 1K
+R2_div div_out 0 1K
+
+* The opamp goes here
+R_in q opamp_in 10k
+Xopamp div_out opamp_in in 0 opamp_out TLV2231_TI_5_2
+R_f opamp_in opamp_out 10k
+C_f opamp_in opamp_out 33n
+
+.end
+
+.control
+* 100 points per decade
+tran 1u 20m
+plot opamp_in opamp_out
+.endc
